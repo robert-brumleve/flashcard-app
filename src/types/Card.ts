@@ -4,6 +4,7 @@ import { AcceptedAnswer } from "./AcceptedAnswer";
 export type CardType = "standard" | "speaking";
 
 export interface Card {
+    
     id: string;
 
     order: number;

@@ -1,4 +1,6 @@
 export interface AcceptedAnswer {
+    
     text: string;
-    primary: boolean;
+
+    primary: boolean;    
 }
