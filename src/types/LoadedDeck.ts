@@ -7,8 +7,4 @@ export interface LoadedDeck {
     deckPath: string;
 
     assetsPath: string;
-
-    imagePath: string;
-
-    audioPath: string;
 }

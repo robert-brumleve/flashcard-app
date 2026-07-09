@@ -77,6 +77,24 @@ Users never edit them directly.
 
 ---
 
+## Authoring Experiences
+
+PC
+Full deck creation
+Bulk importing images
+Add many cards
+Drag & drop media
+Organize assets
+
+Tablet Parent Mode
+Quick corrections
+Fix typos
+Change translations
+Replace a single image
+Reorder a few cards
+
+---
+
 # Folder Structure
 
 decks/
