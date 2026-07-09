@@ -21,8 +21,8 @@ export async function loadDeck(deckPath: string): Promise<LoadedDeck> {
 
     // Get path to assets directory
     const deckFolderPath = path.dirname(deckPath);
-    const textbookFolderPath = path.resolve(deckFolderPath, '..');
-    const assetsFolderPath = path.join(textbookFolderPath, ASSETS_FOLDER_NAME);
+    const deckRootPath = path.resolve(deckFolderPath, '..');
+    const assetsFolderPath = path.join(deckRootPath, ASSETS_FOLDER_NAME);
 
     // Build LoadedDeck
     const loadedDeck: LoadedDeck = {
