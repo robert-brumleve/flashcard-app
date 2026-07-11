@@ -1,0 +1,137 @@
+{
+  "id": "0001",
+  "name": "EN-JP LG1 Vocab",
+  "version": 1,
+  "cards": [
+    {
+      "id": "dog",
+      "order": 1,
+      "type": "speaking",
+      "speechThreshold": 5,
+      "front": {
+        "text": "犬",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "dog",
+        "images": ["dog.jpg"],
+        "audio": []
+      },
+      "acceptedAnswers": [
+        {
+          "text": "dog",
+          "primary": true
+        },
+        {
+          "text": "canine",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "cat",
+      "order": 2,
+      "type": "speaking",
+      "speechThreshold": 5,
+      "front": {
+        "text": "猫",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "cat",
+        "images": [],
+        "audio": []
+      },
+      "acceptedAnswers": [
+        {
+          "text": "cat",
+          "primary": true
+        },
+        {
+          "text": "feline",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "bird",
+      "order": 3,
+      "type": "speaking",
+      "speechThreshold": 5,
+      "front": {
+        "text": "鳥",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "bird",
+        "images": [],
+        "audio": []
+      },
+      "acceptedAnswers": [
+        {
+          "text": "bird",
+          "primary": true
+        },
+        {
+          "text": "avian",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "cow",
+      "order": 4,
+      "type": "speaking",
+      "speechThreshold": 5,
+      "front": {
+        "text": "牛",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "cow",
+        "images": [],
+        "audio": []
+      },
+      "acceptedAnswers": [
+        {
+          "text": "cow",
+          "primary": true
+        },
+        {
+          "text": "bovine",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "horse",
+      "order": 5,
+      "type": "speaking",
+      "speechThreshold": 5,
+      "front": {
+        "text": "馬",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "horse",
+        "images": [],
+        "audio": []
+      },
+      "acceptedAnswers": [
+        {
+          "text": "horse",
+          "primary": true
+        },
+        {
+          "text": "equine",
+          "primary": false
+        }
+      ]
+    }
+  ]
+}
