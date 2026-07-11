@@ -4,6 +4,27 @@ import { validateDeck } from "./validators/deckValidator";
 import { readFile } from "fs/promises";
 import path from 'path';
 import { ASSETS_FOLDER_NAME } from "./constants";
+import { readdir } from "fs/promises";
+
+export async function findDeckFiles(dirPath: string, results: string[] = []): Promise<string[]> {
+    // Read directory
+    const files = await readdir(dirPath, {withFileTypes: true});
+
+    // Loop through each entry
+    for (const file of files) {
+        const filePath = path.join(dirPath, file.name);
+
+        // Recursive call if directory
+        if (file.isDirectory()) {
+            await findDeckFiles(filePath, results);
+
+        // Add deck.json files to results
+        } else if (file.name === "deck.json")
+            results.push(filePath);
+    }
+    
+    return results
+}
 
 export async function loadDeck(deckPath: string): Promise<LoadedDeck> {
     // Read file
