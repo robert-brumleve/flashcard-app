@@ -5,6 +5,7 @@ import { readFile } from "fs/promises";
 import path from 'path';
 import { ASSETS_FOLDER_NAME } from "./constants";
 import { readdir } from "fs/promises";
+import { Manifest } from "../types/Manifest";
 
 export async function findDeckFiles(dirPath: string, results: string[] = []): Promise<string[]> {
     // Read directory
@@ -28,10 +29,10 @@ export async function findDeckFiles(dirPath: string, results: string[] = []): Pr
 
 export async function loadDeck(deckPath: string): Promise<LoadedDeck> {
     // Read file
-    const json = await readFile(deckPath, "utf8");
+    const deckJSON = await readFile(deckPath, "utf8");
 
     // Parse JSON
-    const deck: Deck = JSON.parse(json);
+    const deck: Deck = JSON.parse(deckJSON);
 
     //Validate
     const validationResult = validateDeck(deck);
@@ -71,4 +72,14 @@ export async function loadAllDecks(decksPath: string): Promise<LoadedDeck[]> {
     }
 
     return loadedDecks;
+}
+
+export async function loadManifest(manifestPath: string): Promise<Manifest> {
+    // Read manifest.json
+    const manifestJSON = await readFile(manifestPath, "utf8");
+
+    // Parse JSON, create Manifest object
+    const manifest: Manifest = JSON.parse(manifestJSON);
+
+    return manifest;
 }

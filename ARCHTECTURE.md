@@ -416,3 +416,16 @@ Changing textbook metadata should never reset user progress.
 Date:
 
 2026-06-30
+
+# Deferred Decisions
+
+## Manifest Initialization
+
+For Version 1, manifest.json is assumed to exist and be valid.
+
+A future initializeManifest() function may:
+
+create the manifest if it doesn't exist,
+populate it using findDeckFiles(),
+synchronize newly added decks,
+preserve enabled/disabled state.

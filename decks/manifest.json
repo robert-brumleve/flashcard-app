@@ -1,0 +1,13 @@
+{
+    "version": 1,
+    "decks": [
+        {
+            "path": "decks/lets-go/LG1/EN-JP_vocab/",
+            "enabled": true
+        },
+        {
+            "path": "decks/lets-go/LG1/JP-EN_vocab/",
+            "enabled": true
+        }
+    ]
+}
