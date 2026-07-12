@@ -28,6 +28,7 @@ export async function findDeckFiles(dirPath: string, results: string[] = []): Pr
 }
 
 export async function loadDeck(deckPath: string): Promise<LoadedDeck> {
+    console.log(deckPath);
     // Read file
     const deckJSON = await readFile(deckPath, "utf8");
 
@@ -56,19 +57,20 @@ export async function loadDeck(deckPath: string): Promise<LoadedDeck> {
     return loadedDeck;
 }
 
-export async function loadAllDecks(decksPath: string): Promise<LoadedDeck[]> {
-    // Ask findDeckFiles() for every deck.json
-    const deckFiles = await findDeckFiles(decksPath);
-
+export async function loadAllDecks(manifest: Manifest): Promise<LoadedDeck[]> {
     // Create an empty LoadedDeck array
     const loadedDecks: LoadedDeck[] = [];
 
-    for (const deckPath of deckFiles) {
-        // Load the deck
-        const loadedDeck = await loadDeck(deckPath);
-
-        // Add the deck to the LoadedDeck array
-        loadedDecks.push(loadedDeck);
+    for (const deck of manifest.decks) {
+        // If deck is enabled
+        if (deck.enabled){
+            // Build deck.json path
+            const deckPath = path.join(deck.path, "deck.json")
+            // Load the deck
+            const loadedDeck = await loadDeck(deckPath);
+            // Add the deck to the LoadedDeck array
+            loadedDecks.push(loadedDeck);
+        }
     }
 
     return loadedDecks;
