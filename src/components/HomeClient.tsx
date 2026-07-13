@@ -14,6 +14,9 @@ export function HomeClient({loadedDecks}: HomeClientProps) {
     const onDeckSelected = (deck: LoadedDeck) => {
         setSelectedDeck(deck);
     };
+    const clearSelectedDeck = () => {
+        setSelectedDeck(null);
+    }
     if (selectedDeck === null)
         return (
             <DeckSelection
@@ -25,6 +28,7 @@ export function HomeClient({loadedDecks}: HomeClientProps) {
         return (
             <StudyScreen
             deck={selectedDeck}
+            clearSelectedDeck={clearSelectedDeck}
             />
         );
 }
