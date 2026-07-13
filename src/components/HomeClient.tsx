@@ -1,27 +1,30 @@
 'use client';
 
+import { DeckSelection } from "./DeckSelection";
 import { LoadedDeck } from "../types/LoadedDeck";
+import { StudyScreen } from "./StudyScreen";
+import { useState } from "react";
 
-interface DeckSelectionProps {
+interface HomeClientProps {
     loadedDecks: LoadedDeck[];
 }
 
-export function DeckSelection({loadedDecks}: DeckSelectionProps) {
-    // Selected deck
-    const onDeckSelected = () => {
-    console.log("Clicked!");
-};
-
-    return (
-        // Display the decks
-        <ul>
-            {loadedDecks.map((loadedDeck) => (
-                <li key={loadedDeck.deck.id}>
-                    <button onClick={onDeckSelected}>
-                        {loadedDeck.deck.name}
-                    </button>
-                </li>
-            ))}
-        </ul>
-    );
+export function HomeClient({loadedDecks}: HomeClientProps) {
+    const [selectedDeck, setSelectedDeck] = useState<LoadedDeck | null>(null);
+    const onDeckSelected = (deck: LoadedDeck) => {
+        setSelectedDeck(deck);
+    };
+    if (selectedDeck === null)
+        return (
+            <DeckSelection
+            loadedDecks={loadedDecks}
+            onDeckSelected={onDeckSelected}
+            />
+        );
+    else if (selectedDeck !== null)
+        return (
+            <StudyScreen
+            deck={selectedDeck}
+            />
+        );
 }
