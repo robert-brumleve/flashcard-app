@@ -6,11 +6,19 @@ interface StudyScreenProps {
 }
 
 export function StudyScreen({deck}: StudyScreenProps) {
-    const [answerReaveled, setAnswerRevealed] = useState(false);
+    const [answerReaveled, setAnswerRevealed] = useState<boolean>(false);
+    const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
+
     const showAnswer = () => {
         setAnswerRevealed(true);
     }
-    let currentCardIndex = 0
+    const goToNextCard = () => {
+        if (currentCardIndex + 1 < deck.deck.cards.length) {
+            setCurrentCardIndex((index) => index + 1);
+            setAnswerRevealed(false);
+        }
+    }
+    
     return (
         <ul>
             <li>{deck.deck.cards[currentCardIndex].front.text}</li>
@@ -19,7 +27,12 @@ export function StudyScreen({deck}: StudyScreenProps) {
                 Show Answer
             </button>
             ) : (
-                <li>{deck.deck.cards[currentCardIndex].back.text}</li>
+            <>
+            <li>{deck.deck.cards[currentCardIndex].back.text}</li>
+            <button onClick={goToNextCard}>
+                Next Card
+            </button>
+            </>
             )}
         </ul>
     );
