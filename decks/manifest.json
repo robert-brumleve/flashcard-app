@@ -7,7 +7,7 @@
         },
         {
             "path": "decks/lets-go/LG1/JP-EN_vocab",
-            "enabled": false
+            "enabled": true
         }
     ]
 }

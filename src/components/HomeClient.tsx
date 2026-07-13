@@ -1,18 +1,23 @@
-import React from "react";
+'use client';
+
 import { LoadedDeck } from "../types/LoadedDeck";
 
-export function DeckSelection(loadedDecks: LoadedDeck[]) {
-    // Define click handler function
-    const onDeckSelected = (loadedDeck: LoadedDeck) => {
-    console.log(loadedDeck.deck.name);
-    };
+interface DeckSelectionProps {
+    loadedDecks: LoadedDeck[];
+}
+
+export function DeckSelection({loadedDecks}: DeckSelectionProps) {
+    // Selected deck
+    const onDeckSelected = () => {
+    console.log("Clicked!");
+};
 
     return (
         // Display the decks
         <ul>
             {loadedDecks.map((loadedDeck) => (
                 <li key={loadedDeck.deck.id}>
-                    <button onClick={() => onDeckSelected(loadedDeck)}>
+                    <button onClick={onDeckSelected}>
                         {loadedDeck.deck.name}
                     </button>
                 </li>
