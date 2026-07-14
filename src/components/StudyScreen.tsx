@@ -1,12 +1,12 @@
-import { LoadedDeck } from "../types/LoadedDeck";
+import { StudySession } from "../types/StudySession";
 import { useState } from "react";
 
 interface StudyScreenProps {
-    deck: LoadedDeck
+    studySession: StudySession
     clearSelectedDeck: () => void;
 }
 
-export function StudyScreen({deck, clearSelectedDeck}: StudyScreenProps) {
+export function StudyScreen({studySession, clearSelectedDeck}: StudyScreenProps) {
     const [answerRevealed, setAnswerRevealed] = useState<boolean>(false);
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
     const [studyComplete, setStudyComplete] = useState<boolean>(false);
@@ -15,7 +15,7 @@ export function StudyScreen({deck, clearSelectedDeck}: StudyScreenProps) {
         setAnswerRevealed(true);
     }
     const goToNextCard = () => {
-        if (currentCardIndex + 1 < deck.deck.cards.length) {
+        if (currentCardIndex + 1 < studySession.studyCards.length) {
             setCurrentCardIndex((index) => index + 1);
             setAnswerRevealed(false);
         }
@@ -30,14 +30,14 @@ export function StudyScreen({deck, clearSelectedDeck}: StudyScreenProps) {
         <ul>
             {!studyComplete ? (
                 <>
-                    <li>{deck.deck.cards[currentCardIndex].front.text}</li>
+                    <li>{studySession.studyCards[currentCardIndex].front.text}</li>
                     {!answerRevealed ? (
                         <button onClick={showAnswer}>
                             Show Answer
                         </button>
                     ) : (
                         <>
-                            <li>{deck.deck.cards[currentCardIndex].back.text}</li>
+                            <li>{studySession.studyCards[currentCardIndex].back.text}</li>
                             <button onClick={goToNextCard}>
                                 Next Card
                             </button>
