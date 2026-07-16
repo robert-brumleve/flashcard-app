@@ -5,5 +5,5 @@ export interface StudySession {
 
     loadedDeck: LoadedDeck;
 
-    studyCards: Card[]
+    studyCards: Card[];
 }

@@ -5,7 +5,7 @@ export interface ManifestEntry {
     enabled: boolean;
 }
 
-export interface Manifest {
+export interface DeckManifest {
 
     version: number;
 

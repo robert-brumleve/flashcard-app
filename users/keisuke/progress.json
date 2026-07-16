@@ -1,0 +1,23 @@
+{
+  "userId": "keisuke",
+  "cardProgress": [
+    {
+        "deckId": "0002",
+        "cardId": "dog",
+        "reviewCount": 1,        
+        "lastReviewGrade": "easy"
+    },
+    {
+        "deckId": "0002",
+        "cardId": "cat",
+        "reviewCount": 1,        
+        "lastReviewGrade": "hard"
+    },
+    {
+        "deckId": "0002",
+        "cardId": "bird",
+        "reviewCount": 1,        
+        "lastReviewGrade": "easy"
+    }
+  ]
+}

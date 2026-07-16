@@ -5,7 +5,7 @@ import { readFile } from "fs/promises";
 import path from 'path';
 import { ASSETS_FOLDER_NAME } from "./constants";
 import { readdir } from "fs/promises";
-import { Manifest } from "../types/Manifest";
+import { DeckManifest } from "../types/DeckManifest";
 
 export async function findDeckFiles(dirPath: string, results: string[] = []): Promise<string[]> {
     // Read directory
@@ -57,11 +57,11 @@ export async function loadDeck(deckPath: string): Promise<LoadedDeck> {
     return loadedDeck;
 }
 
-export async function loadAllDecks(manifest: Manifest): Promise<LoadedDeck[]> {
+export async function loadAllDecks(deckManifest: DeckManifest): Promise<LoadedDeck[]> {
     // Create an empty LoadedDeck array
     const loadedDecks: LoadedDeck[] = [];
 
-    for (const deck of manifest.decks) {
+    for (const deck of deckManifest.decks) {
         // If deck is enabled
         if (deck.enabled){
             // Build deck.json path
@@ -76,12 +76,12 @@ export async function loadAllDecks(manifest: Manifest): Promise<LoadedDeck[]> {
     return loadedDecks;
 }
 
-export async function loadManifest(manifestPath: string): Promise<Manifest> {
+export async function loadDeckManifest(deckManifestPath: string): Promise<DeckManifest> {
     // Read manifest.json
-    const manifestJSON = await readFile(manifestPath, "utf8");
+    const deckManifestJSON = await readFile(deckManifestPath, "utf8");
 
     // Parse JSON, create Manifest object
-    const manifest: Manifest = JSON.parse(manifestJSON);
+    const deckManifest: DeckManifest = JSON.parse(deckManifestJSON);
 
-    return manifest;
+    return deckManifest;
 }

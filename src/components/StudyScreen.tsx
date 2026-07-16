@@ -1,12 +1,17 @@
+import { UserProgress } from "../types/UserProgress";
 import { StudySession } from "../types/StudySession";
 import { useState } from "react";
+import { updateCardProgress } from "../lib/progressManager";
+import { Grade } from "../types/CardProgress";
 
 interface StudyScreenProps {
     studySession: StudySession
-    clearSelectedDeck: () => void;
+    onStudyComplete: () => void;
+    userProgress: UserProgress
+    deckId: string
 }
 
-export function StudyScreen({studySession, clearSelectedDeck}: StudyScreenProps) {
+export function StudyScreen({studySession, onStudyComplete, userProgress, deckId}: StudyScreenProps) {
     const [answerRevealed, setAnswerRevealed] = useState<boolean>(false);
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
     const [studyComplete, setStudyComplete] = useState<boolean>(false);
@@ -14,6 +19,7 @@ export function StudyScreen({studySession, clearSelectedDeck}: StudyScreenProps)
     const showAnswer = () => {
         setAnswerRevealed(true);
     }
+
     const goToNextCard = () => {
         if (currentCardIndex + 1 < studySession.studyCards.length) {
             setCurrentCardIndex((index) => index + 1);
@@ -23,23 +29,36 @@ export function StudyScreen({studySession, clearSelectedDeck}: StudyScreenProps)
     }
 
     const returnToDeckSelection = () => {
-        clearSelectedDeck();
+        // TODO: Persist UserProgress to disk.
+        onStudyComplete();
     }
+
+    const gradeButton = (grade: Grade) => {
+        updateCardProgress(userProgress, deckId, currentCard.id, grade);
+        goToNextCard();
+    }
+
+    const currentCard = studySession.studyCards[currentCardIndex];
     
     return (
         <ul>
             {!studyComplete ? (
                 <>
-                    <li>{studySession.studyCards[currentCardIndex].front.text}</li>
+                    <li>{currentCard.front.text}</li>
                     {!answerRevealed ? (
                         <button onClick={showAnswer}>
                             Show Answer
                         </button>
                     ) : (
                         <>
-                            <li>{studySession.studyCards[currentCardIndex].back.text}</li>
-                            <button onClick={goToNextCard}>
-                                Next Card
+                            <li>{currentCard.back.text}</li>
+
+                            <button onClick={() => gradeButton("easy")}>
+                                Easy
+                            </button>
+
+                            <button onClick={() => gradeButton("hard")}>
+                                Hard
                             </button>
                         </>
                     )}
