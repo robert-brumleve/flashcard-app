@@ -6,4 +6,8 @@ export interface StudySession {
     loadedDeck: LoadedDeck;
 
     studyCards: Card[];
+
+    reviewCardCount: number;
+
+    newCardCount: number;
 }

@@ -1,6 +1,6 @@
 {
-  "id": "0002",
-  "name": "JP-EN LG1 Vocab",
+  "id": "test2",
+  "name": "test2",
   "version": 1,
   "cards": [
     {
@@ -129,58 +129,6 @@
         },
         {
           "text": "equine",
-          "primary": false
-        }
-      ]
-    },
-    {
-      "id": "bear",
-      "order": 6,
-      "type": "speaking",
-      "speechThreshold": 5,
-      "front": {
-        "text": "熊",
-        "images": [],
-        "audio": []
-      },
-      "back": {
-        "text": "bear",
-        "images": [],
-        "audio": []
-      },
-      "acceptedAnswers": [
-        {
-          "text": "bear",
-          "primary": true
-        },
-        {
-          "text": "ursine",
-          "primary": false
-        }
-      ]
-    },
-    {
-      "id": "tiger",
-      "order": 7,
-      "type": "speaking",
-      "speechThreshold": 5,
-      "front": {
-        "text": "aaa",
-        "images": [],
-        "audio": []
-      },
-      "back": {
-        "text": "tiger",
-        "images": [],
-        "audio": []
-      },
-      "acceptedAnswers": [
-        {
-          "text": "tiger",
-          "primary": true
-        },
-        {
-          "text": "tigrine",
           "primary": false
         }
       ]

@@ -1,6 +1,6 @@
 {
-  "id": "0002",
-  "name": "JP-EN LG1 Vocab",
+  "id": "test1",
+  "name": "test1",
   "version": 1,
   "cards": [
     {
@@ -165,7 +165,7 @@
       "type": "speaking",
       "speechThreshold": 5,
       "front": {
-        "text": "aaa",
+        "text": "虎",
         "images": [],
         "audio": []
       },

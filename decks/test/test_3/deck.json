@@ -1,0 +1,85 @@
+{
+  "id": "test3",
+  "name": "test3",
+  "version": 1,
+  "cards": [
+    {
+      "id": "dog",
+      "order": 1,
+      "type": "speaking",
+      "speechThreshold": 5,
+      "front": {
+        "text": "犬",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "dog",
+        "images": ["dog.jpg"],
+        "audio": []
+      },
+      "acceptedAnswers": [
+        {
+          "text": "dog",
+          "primary": true
+        },
+        {
+          "text": "canine",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "cat",
+      "order": 2,
+      "type": "speaking",
+      "speechThreshold": 5,
+      "front": {
+        "text": "猫",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "cat",
+        "images": [],
+        "audio": []
+      },
+      "acceptedAnswers": [
+        {
+          "text": "cat",
+          "primary": true
+        },
+        {
+          "text": "feline",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "bird",
+      "order": 3,
+      "type": "speaking",
+      "speechThreshold": 5,
+      "front": {
+        "text": "鳥",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "bird",
+        "images": [],
+        "audio": []
+      },
+      "acceptedAnswers": [
+        {
+          "text": "bird",
+          "primary": true
+        },
+        {
+          "text": "avian",
+          "primary": false
+        }
+      ]
+    }
+  ]
+}

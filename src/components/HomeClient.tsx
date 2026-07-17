@@ -4,7 +4,7 @@ import { DeckSelection } from "./DeckSelection";
 import { LoadedDeck } from "../types/LoadedDeck";
 import { StudyScreen } from "./StudyScreen";
 import { useState } from "react";
-import { createStudySession } from "../lib/studySessionBuilder";
+import { createStudySession } from "../lib/studyScheduler";
 import { UserProgress } from "../types/UserProgress";
 
 interface HomeClientProps {
@@ -28,7 +28,7 @@ export function HomeClient({loadedDecks, userProgress}: HomeClientProps) {
             />
         );
     else if (selectedDeck !== null) {
-        const studySession = createStudySession(selectedDeck)
+        const studySession = createStudySession(selectedDeck, userProgress)
         return (
             <StudyScreen
             studySession={studySession}
