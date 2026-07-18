@@ -1,7 +1,7 @@
 import { Side } from "./Side";
 import { AcceptedAnswer } from "./AcceptedAnswer";
 
-export type CardType = "standard" | "speaking";
+export type CardType = "vocabulary" | "speaking";
 
 export interface Card {
     

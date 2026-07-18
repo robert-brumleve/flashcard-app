@@ -6,7 +6,7 @@
     {
       "id": "dog",
       "order": 1,
-      "type": "speaking",
+      "type": "vocabulary",
       "speechThreshold": 5,
       "front": {
         "text": "犬",
@@ -17,22 +17,12 @@
         "text": "dog",
         "images": ["dog.jpg"],
         "audio": []
-      },
-      "acceptedAnswers": [
-        {
-          "text": "dog",
-          "primary": true
-        },
-        {
-          "text": "canine",
-          "primary": false
-        }
-      ]
+      }
     },
     {
       "id": "cat",
       "order": 2,
-      "type": "speaking",
+      "type": "vocabulary",
       "speechThreshold": 5,
       "front": {
         "text": "猫",
@@ -43,22 +33,12 @@
         "text": "cat",
         "images": [],
         "audio": []
-      },
-      "acceptedAnswers": [
-        {
-          "text": "cat",
-          "primary": true
-        },
-        {
-          "text": "feline",
-          "primary": false
-        }
-      ]
+      }
     },
     {
       "id": "bird",
       "order": 3,
-      "type": "speaking",
+      "type": "vocabulary",
       "speechThreshold": 5,
       "front": {
         "text": "鳥",
@@ -69,22 +49,12 @@
         "text": "bird",
         "images": [],
         "audio": []
-      },
-      "acceptedAnswers": [
-        {
-          "text": "bird",
-          "primary": true
-        },
-        {
-          "text": "avian",
-          "primary": false
-        }
-      ]
+      }
     },
     {
       "id": "cow",
       "order": 4,
-      "type": "speaking",
+      "type": "vocabulary",
       "speechThreshold": 5,
       "front": {
         "text": "牛",
@@ -95,22 +65,12 @@
         "text": "cow",
         "images": [],
         "audio": []
-      },
-      "acceptedAnswers": [
-        {
-          "text": "cow",
-          "primary": true
-        },
-        {
-          "text": "bovine",
-          "primary": false
-        }
-      ]
+      }
     },
     {
       "id": "horse",
       "order": 5,
-      "type": "speaking",
+      "type": "vocabulary",
       "speechThreshold": 5,
       "front": {
         "text": "馬",
@@ -121,22 +81,12 @@
         "text": "horse",
         "images": [],
         "audio": []
-      },
-      "acceptedAnswers": [
-        {
-          "text": "horse",
-          "primary": true
-        },
-        {
-          "text": "equine",
-          "primary": false
-        }
-      ]
+      }
     },
     {
       "id": "bear",
       "order": 6,
-      "type": "speaking",
+      "type": "vocabulary",
       "speechThreshold": 5,
       "front": {
         "text": "熊",
@@ -147,22 +97,12 @@
         "text": "bear",
         "images": [],
         "audio": []
-      },
-      "acceptedAnswers": [
-        {
-          "text": "bear",
-          "primary": true
-        },
-        {
-          "text": "ursine",
-          "primary": false
-        }
-      ]
+      }
     },
     {
       "id": "tiger",
       "order": 7,
-      "type": "speaking",
+      "type": "vocabulary",
       "speechThreshold": 5,
       "front": {
         "text": "虎",
@@ -173,17 +113,7 @@
         "text": "tiger",
         "images": [],
         "audio": []
-      },
-      "acceptedAnswers": [
-        {
-          "text": "tiger",
-          "primary": true
-        },
-        {
-          "text": "tigrine",
-          "primary": false
-        }
-      ]
+      }
     }
   ]
 }

@@ -3,27 +3,24 @@ import { StudySession } from "../types/StudySession";
 import { useState } from "react";
 import { updateCardProgress } from "../lib/progressManager";
 import { Grade } from "../types/CardProgress";
+import { VocabularyCard } from "./cards/VocabularyCard";
+import { SpeakingCard } from "./cards/SpeakingCard";
+import { Card } from "@/types/Card";
 
 interface StudyScreenProps {
-    studySession: StudySession
+    studySession: StudySession;
     onStudyComplete: () => void;
-    userProgress: UserProgress
-    deckId: string
+    userProgress: UserProgress;
+    deckId: string;
 }
 
 export function StudyScreen({studySession, onStudyComplete, userProgress, deckId}: StudyScreenProps) {
-    const [answerRevealed, setAnswerRevealed] = useState<boolean>(false);
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
     const [studyComplete, setStudyComplete] = useState<boolean>(false);
-
-    const showAnswer = () => {
-        setAnswerRevealed(true);
-    }
 
     const goToNextCard = () => {
         if (currentCardIndex + 1 < studySession.studyCards.length) {
             setCurrentCardIndex((index) => index + 1);
-            setAnswerRevealed(false);
         }
         else setStudyComplete(true);
     }
@@ -33,35 +30,30 @@ export function StudyScreen({studySession, onStudyComplete, userProgress, deckId
         onStudyComplete();
     }
 
-    const gradeButton = (grade: Grade) => {
+    const handleGrade = (grade: Grade) => {
         updateCardProgress(userProgress, deckId, currentCard.id, grade);
         goToNextCard();
     }
 
     const currentCard = studySession.studyCards[currentCardIndex];
-    
+
     return (
         <ul>
             {!studyComplete ? (
                 <>
-                    <li>{currentCard.front.text}</li>
-                    {!answerRevealed ? (
-                        <button onClick={showAnswer}>
-                            Show Answer
-                        </button>
-                    ) : (
-                        <>
-                            <li>{currentCard.back.text}</li>
-
-                            <button onClick={() => gradeButton("easy")}>
-                                Easy
-                            </button>
-
-                            <button onClick={() => gradeButton("hard")}>
-                                Hard
-                            </button>
-                        </>
-                    )}
+                    {currentCard.type === "vocabulary" ? (
+                        <VocabularyCard
+                            key={currentCard.id}
+                            card={currentCard}
+                            onGrade={handleGrade}
+                        />
+                    ) : currentCard.type === "speaking" ? (
+                        <SpeakingCard
+                            key={currentCard.id}
+                            card={currentCard}
+                            onGrade={handleGrade}
+                        />
+                    ) : null}
                 </>
             ) : (
                 <>

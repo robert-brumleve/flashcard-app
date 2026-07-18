@@ -23,18 +23,18 @@ export function HomeClient({loadedDecks, userProgress}: HomeClientProps) {
     if (selectedDeck === null)
         return (
             <DeckSelection
-            loadedDecks={loadedDecks}
-            onDeckSelected={onDeckSelected}
+                loadedDecks={loadedDecks}
+                onDeckSelected={onDeckSelected}
             />
         );
     else if (selectedDeck !== null) {
         const studySession = createStudySession(selectedDeck, userProgress)
         return (
             <StudyScreen
-            studySession={studySession}
-            onStudyComplete={onStudyComplete}
-            userProgress={userProgress}
-            deckId={selectedDeck.deck.id}
+                studySession={studySession}
+                onStudyComplete={onStudyComplete}
+                userProgress={userProgress}
+                deckId={selectedDeck.deck.id}
             />
         );
     }

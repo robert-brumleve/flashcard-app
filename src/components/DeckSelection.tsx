@@ -1,7 +1,7 @@
 import { LoadedDeck } from "../types/LoadedDeck";
 
 interface DeckSelectionProps {
-    loadedDecks: LoadedDeck[],
+    loadedDecks: LoadedDeck[];
     onDeckSelected: (loadedDeck: LoadedDeck) => void;
 }
 
