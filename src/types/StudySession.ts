@@ -1,11 +1,11 @@
-import { Card } from "./Card";
+import { StudyCard } from "./StudyCard";
 import { LoadedDeck } from "./LoadedDeck";
 
 export interface StudySession {
 
     loadedDeck: LoadedDeck;
 
-    studyCards: Card[];
+    studyCards: StudyCard[];
 
     reviewCardCount: number;
 

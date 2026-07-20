@@ -9,4 +9,8 @@ export interface CardProgress {
     reviewCount: number;
     
     lastReviewGrade: Grade;
+
+    lastReviewed: string;
+    
+    nextReview: string;
 }

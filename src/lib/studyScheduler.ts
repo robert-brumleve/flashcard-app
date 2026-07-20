@@ -2,49 +2,111 @@ import { StudySession } from "../types/StudySession";
 import { LoadedDeck } from "../types/LoadedDeck";
 import { Card } from "../types/Card";
 import { UserProgress } from "../types/UserProgress";
-import { INITIAL_REVIEW_CARDS } from "./constants";
+import { INITIAL_REVIEW_CARDS, MAX_NEW_CARDS, TARGET_SESSION_SIZE } from "./constants";
+import { CardProgress } from "../types/CardProgress";
+import { StudyCard } from "../types/StudyCard";
 
-export function createStudySession(loadedDeck: LoadedDeck, userProgress: UserProgress): StudySession {
+function sessionFull(studyCards: StudyCard[]): boolean {
+    return studyCards.length >= TARGET_SESSION_SIZE;
+}
+
+function isCardDue(cardProgress: CardProgress): boolean {
+    const nextReviewDate = new Date(cardProgress.nextReview)
+    const now = new Date()
+
+    return  nextReviewDate <= now;
+}
+
+export function createStudySession(
+    loadedDeck: LoadedDeck,
+    userProgress: UserProgress):
+    StudySession {
     const deckCards = loadedDeck.deck.cards
-    const reviewCards: Card[] = [];
+    const dueReviewCards: Card[] = [];
     const newCards: Card[] = [];
-    const studyCards: Card[] = [];
-    let reviewIndex = 0;
-    let newIndex = 0;
+    const practiceReviewCards: Card[] = [];
 
-    // Separate cards into review and new
+// Separate cards into due review, practice review, and new
     for (const card of deckCards) {
-        const hasProgress = userProgress.cardProgress.some(
+        const cardProgress = userProgress.cardProgress.find(
             cardProgress => 
                 cardProgress.cardId === card.id &&
                 cardProgress.deckId === loadedDeck.deck.id
         );
-        if (hasProgress) {
-            reviewCards.push(card);
+        if (cardProgress) {
+            if (isCardDue(cardProgress)) {
+                dueReviewCards.push(card);
+            }
+            else {
+                practiceReviewCards.push(card);
+            }
         }
         else {
             newCards.push(card);
         }
     }
 
-    // Add initial review cards
-    while (reviewIndex < INITIAL_REVIEW_CARDS && 
-        reviewIndex < reviewCards.length
+    const newSlots = Math.min(
+        newCards.length,
+        MAX_NEW_CARDS
+    );
+    const practiceReviewLimit = Math.max(
+        0,
+        TARGET_SESSION_SIZE
+            - dueReviewCards.length
+            - newSlots
+    );
+    let dueReviewIndex = 0;
+    let newIndex = 0;
+    let practiceReviewIndex = 0;
+    const studyCards: StudyCard[] = [];
+
+    // Add initial due review cards
+    while (dueReviewIndex < INITIAL_REVIEW_CARDS && 
+        dueReviewIndex < dueReviewCards.length
     ) {
-        studyCards.push(reviewCards[reviewIndex]);
-        reviewIndex++;
+        studyCards.push({
+            card: dueReviewCards[dueReviewIndex],
+            type: "dueReview" });
+        dueReviewIndex++;
     }
-    // Alternate new and review cards
-    while (reviewIndex < reviewCards.length ||
-        newIndex < newCards.length
+    // Attempt to add one new then two review cards
+    while (studyCards.length < TARGET_SESSION_SIZE &&
+        (dueReviewIndex < dueReviewCards.length ||
+        newIndex < newCards.length ||
+        practiceReviewIndex < practiceReviewCards.length)
     ) {
-        if (newIndex < newCards.length) {
-            studyCards.push(newCards[newIndex]);
+        if (newIndex < newSlots &&
+            !sessionFull(studyCards)
+        ) {
+            studyCards.push({
+                card: newCards[newIndex],
+                type: "new"});
             newIndex++;
         }
-        if (reviewIndex < reviewCards.length) {
-            studyCards.push(reviewCards[reviewIndex]);
-            reviewIndex++;
+        if (dueReviewIndex < dueReviewCards.length &&
+            !sessionFull(studyCards)
+        ) {
+            studyCards.push({
+                card: dueReviewCards[dueReviewIndex],
+                type: "dueReview" });
+            dueReviewIndex++;
+        }
+        if (practiceReviewIndex < practiceReviewLimit &&
+            !sessionFull(studyCards)
+        ) {
+            studyCards.push({
+                card: practiceReviewCards[practiceReviewIndex],
+                type: "practiceReview" });
+            practiceReviewIndex++;
+        }
+        else if (dueReviewIndex < dueReviewCards.length &&
+            !sessionFull(studyCards)
+        ) {
+            studyCards.push({
+                card: dueReviewCards[dueReviewIndex],
+                type: "dueReview" });
+            dueReviewIndex++;
         }
     }
 
@@ -52,7 +114,7 @@ export function createStudySession(loadedDeck: LoadedDeck, userProgress: UserPro
     const studySession: StudySession = {
         loadedDeck,
         studyCards,
-        reviewCardCount: reviewCards.length,
+        reviewCardCount: dueReviewCards.length + practiceReviewCards.length,
         newCardCount: newCards.length
     };
 

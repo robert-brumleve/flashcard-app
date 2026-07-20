@@ -341,13 +341,13 @@ Deck editor
 
 Milestone 3
 
-SQLite
+Scheduler
 Users
 Progress
 
 Milestone 4
 
-Scheduler
+SQLite
 
 Milestone 5
 

@@ -1,9 +1,18 @@
 import { CardProgress, Grade } from "../types/CardProgress";
 import { UserProgress } from "../types/UserProgress";
 
-export function updateCardProgress(userProgress: UserProgress, deckId: string, cardId: string, grade: Grade) {
+export function updateCardProgress(
+    userProgress: UserProgress,
+    deckId: string,
+    cardId: string,
+    grade: Grade,
+    lastReviewed: string,
+    nextReview: string) {
     // Find CardProgress
-    const cardProgress: CardProgress | undefined = userProgress.cardProgress.find(card => card.deckId === deckId && card.cardId === cardId);
+    const cardProgress: CardProgress | undefined = 
+        userProgress.cardProgress.find(
+            card =>
+                card.deckId === deckId && card.cardId === cardId);
 
     // Update CardProgress
     if (cardProgress) {
@@ -15,7 +24,9 @@ export function updateCardProgress(userProgress: UserProgress, deckId: string, c
             deckId,
             cardId,
             reviewCount: 1,
-            lastReviewGrade: grade
+            lastReviewGrade: grade,
+            lastReviewed,
+            nextReview
         }
         
         userProgress.cardProgress.push(newCardProgress)
