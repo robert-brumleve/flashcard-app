@@ -5,7 +5,6 @@ import { updateCardProgress } from "../lib/progressManager";
 import { Grade } from "../types/CardProgress";
 import { VocabularyCard } from "./cards/VocabularyCard";
 import { SpeakingCard } from "./cards/SpeakingCard";
-import { Card } from "@/types/Card";
 
 interface StudyScreenProps {
     studySession: StudySession;
@@ -31,7 +30,7 @@ export function StudyScreen({studySession, onStudyComplete, userProgress, deckId
     }
 
     const handleGrade = (grade: Grade) => {
-        updateCardProgress(userProgress, deckId, currentCard.id, grade);
+        updateCardProgress(userProgress, deckId, currentCard.card.id, grade);
         goToNextCard();
     }
 
@@ -41,16 +40,16 @@ export function StudyScreen({studySession, onStudyComplete, userProgress, deckId
         <ul>
             {!studyComplete ? (
                 <>
-                    {currentCard.type === "vocabulary" ? (
+                    {currentCard.card.type === "vocabulary" ? (
                         <VocabularyCard
-                            key={currentCard.id}
-                            card={currentCard}
+                            key={currentCard.card.id}
+                            card={currentCard.card}
                             onGrade={handleGrade}
                         />
-                    ) : currentCard.type === "speaking" ? (
+                    ) : currentCard.card.type === "speaking" ? (
                         <SpeakingCard
-                            key={currentCard.id}
-                            card={currentCard}
+                            key={currentCard.card.id}
+                            card={currentCard.card}
                             onGrade={handleGrade}
                         />
                     ) : null}
