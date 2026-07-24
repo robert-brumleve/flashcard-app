@@ -93,6 +93,7 @@ export function createStudySession(
             dueReviewIndex++;
         }
         if (practiceReviewIndex < practiceReviewLimit &&
+            practiceReviewIndex < practiceReviewCards.length &&
             !sessionFull(studyCards)
         ) {
             studyCards.push({

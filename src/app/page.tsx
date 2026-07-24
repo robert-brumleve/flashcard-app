@@ -10,8 +10,8 @@ export default async function Home() {
     const manifestPath: string = path.join(process.cwd(), 'decks/manifest.json');
     const deckManifest: DeckManifest = await loadDeckManifest(manifestPath);
     const loadedDecks: LoadedDeck[] = await loadAllDecks(deckManifest);
-    const userProgressPath: string = path.join(process.cwd(), 'users/keisuke/progress.json');
-    const userProgress: UserProgress = await loadUserProgress(userProgressPath)
+    const userId: string = 'keisuke'
+    const userProgress: UserProgress = await loadUserProgress(userId)
     
     return (
         <HomeClient

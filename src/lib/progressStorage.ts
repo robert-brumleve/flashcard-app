@@ -3,7 +3,10 @@ import { readFile } from "fs/promises";
 import { writeFile } from "fs/promises";
 import path from "path";
 
-export async function loadUserProgress(userProgressPath: string): Promise<UserProgress> {
+export async function loadUserProgress(userId: string): Promise<UserProgress> {
+    // Get User Progress JSON path
+    const userProgressPath = path.join(process.cwd(), 'users', userId, 'progress.json');
+    
     // Read progress.json
     const userProgressJSON = await readFile(userProgressPath, "utf8");
 
