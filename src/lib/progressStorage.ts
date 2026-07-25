@@ -16,12 +16,12 @@ export async function loadUserProgress(userId: string): Promise<UserProgress> {
     return userProgress;
 }
 
-export async function saveUserProgress(userId: string, userProgress: UserProgress) {
+export async function saveUserProgress(userProgress: UserProgress) {
     // Create JSON string
     const jsonString = JSON.stringify(userProgress, null, 2);
 
     // Get User Progress JSON file path
-    const userDir = path.join(process.cwd(), 'users', userId);
+    const userDir = path.join(process.cwd(), 'users', userProgress.userId);
     const userPath = path.join(userDir, 'progress.json');
 
     // Write the User Progress JSON file

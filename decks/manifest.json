@@ -24,6 +24,10 @@
         {
             "path": "decks/test/test_4",
             "enabled": true
+        },
+        {
+            "path": "decks/test/test_5",
+            "enabled": true
         }
     ]
 }

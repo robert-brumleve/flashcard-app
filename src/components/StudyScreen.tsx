@@ -5,6 +5,7 @@ import { updateCardProgress } from "../lib/progressManager";
 import { Grade } from "../types/CardProgress";
 import { VocabularyCard } from "./cards/VocabularyCard";
 import { SpeakingCard } from "./cards/SpeakingCard";
+import { saveProgressAction } from "../app/actions";
 
 interface StudyScreenProps {
     studySession: StudySession;
@@ -25,12 +26,12 @@ export function StudyScreen({studySession, onStudyComplete, userProgress, deckId
     }
 
     const returnToDeckSelection = () => {
-        // TODO: Persist UserProgress to disk.
         onStudyComplete();
     }
 
     const handleGrade = (grade: Grade) => {
         updateCardProgress(userProgress, deckId, currentCard.card.id, grade);
+        saveProgressAction(userProgress);
         goToNextCard();
     }
 
