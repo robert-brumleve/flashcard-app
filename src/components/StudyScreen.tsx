@@ -30,8 +30,10 @@ export function StudyScreen({studySession, onStudyComplete, userProgress, deckId
     }
 
     const handleGrade = (grade: Grade) => {
-        updateCardProgress(userProgress, deckId, currentCard.card.id, grade);
-        saveProgressAction(userProgress);
+        if (currentCard.type !== "practiceReview") {
+            updateCardProgress(userProgress, deckId, currentCard.card.id, grade);
+            saveProgressAction(userProgress);
+        }
         goToNextCard();
     }
 

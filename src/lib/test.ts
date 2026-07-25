@@ -15,5 +15,4 @@ import { saveProgressAction } from "@/app/actions";
     const userId: string = 'keisuke'
     const userProgress: UserProgress = await loadUserProgress(userId)
 
-    //const studySession = createStudySession(loadedDecks[1], userProgress)
-saveProgressAction(userProgress);
+    const studySession = createStudySession(loadedDecks[2], userProgress)

@@ -7,3 +7,4 @@ export const MAX_NEW_CARDS = 8;
 export const NEW_CARD_INTERVAL_DAYS = 1;
 export const HARD_INTERVAL_DAYS = 1;
 export const EASY_INTERVAL_DAYS = 3;
+export const REVIEWS_PER_NEW_CARD = 2;
