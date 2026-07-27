@@ -25,7 +25,7 @@ export function SpeakingCard({card, onGrade}: SpeakingCardProps) {
                             Speak
                         </button>
 
-                        <button onClick={() => handleGrade("hard")}>
+                        <button onClick={() => handleGrade("again")}>
                             I don't know
                         </button>
                     </>

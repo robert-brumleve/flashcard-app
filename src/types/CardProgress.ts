@@ -1,4 +1,8 @@
-export type Grade = "easy" | "hard";
+export type Grade =
+    | "easy"
+    | "good"
+    | "hard"
+    | "again";
 
 export interface CardProgress {
 

@@ -1,7 +1,7 @@
 import { CardProgress, Grade } from "../types/CardProgress";
 import { UserProgress } from "../types/UserProgress";
-import { EASY_INTERVAL_DAYS, HARD_INTERVAL_DAYS, NEW_CARD_INTERVAL_DAYS } from "../lib/constants";
-
+import { EASY_INTERVAL_MULTIPLIER, GOOD_INTERVAL_MULTIPLIER, HARD_INTERVAL_MULTIPLIER, AGAIN_INTERVAL_MULTIPLIER, NEW_CARD_INTERVAL_DAYS } from "../lib/constants";
+import { StudyCard } from "@/types/StudyCard";
 
 function addDays(originalDate: Date, daysToAdd: number): Date {
     // Clone the date
@@ -13,24 +13,72 @@ function addDays(originalDate: Date, daysToAdd: number): Date {
 function calculateNextReview(
     currentProgress: CardProgress | undefined,
     grade: Grade,
-    reviewDate: Date
+    reviewDate: Date,
+    studyCard: StudyCard
 ): Date {
-    // Set review interval
-    const interval: number =
-        grade === "hard" ? HARD_INTERVAL_DAYS
-        : grade === "easy" ? EASY_INTERVAL_DAYS
-        : NEW_CARD_INTERVAL_DAYS;
+    // Set review for new cards
+    if (currentProgress === undefined) {
+        return addDays(reviewDate, NEW_CARD_INTERVAL_DAYS);
+    }
 
-    const newReview = addDays(reviewDate, interval);
-    
-    return newReview;
+    // Calculate previous review interval
+    const previousInterval = calculateReviewInterval(
+        currentProgress.lastReviewed,
+        currentProgress.nextReview
+    )
+
+    // Calculate new review interval
+    let interval = previousInterval;
+
+    for (let i = 0; i < studyCard.againCount; i++) {
+        interval *= AGAIN_INTERVAL_MULTIPLIER;
+    }
+
+    switch (grade) {
+        case "easy":
+            interval *= EASY_INTERVAL_MULTIPLIER;
+            break;
+        case "good":
+            interval *= GOOD_INTERVAL_MULTIPLIER;
+            break;
+        case "hard":
+            interval *= HARD_INTERVAL_MULTIPLIER;
+            break;
+        default:
+            throw new Error(`Unexpected grade: ${grade}`);
+    }
+    interval = Math.max(1, interval);
+
+    return addDays(reviewDate, interval);
+}
+
+function calculateReviewInterval(
+    lastReviewed: string,
+    nextReview: string
+): number {
+    const lastReviewedDate: Date = new Date(lastReviewed);
+    const nextReviewDate: Date = new Date(nextReview);
+
+    const intervalInMs: number =
+        nextReviewDate.getTime() - lastReviewedDate.getTime();
+    const intervalInDays: number =
+        Math.round(intervalInMs / (1000 * 60 * 60 * 24));
+
+    return intervalInDays;
 }
 
 export function updateCardProgress(
     userProgress: UserProgress,
     deckId: string,
-    cardId: string,
-    grade: Grade) {
+    grade: Grade,
+    studyCard: StudyCard
+) {
+    if (grade === "again") {
+        return;
+    }
+    
+    const cardId = studyCard.card.id;
+
     // Find CardProgress
     const cardProgress: CardProgress | undefined = 
         userProgress.cardProgress.find(
@@ -43,17 +91,19 @@ export function updateCardProgress(
     const nextReview = calculateNextReview(
         cardProgress,
         grade,
-        reviewDate
+        reviewDate,
+        studyCard
     );
-    
+
     // Update CardProgress
     if (cardProgress) {
-    cardProgress.reviewCount++;
-    cardProgress.lastReviewGrade = grade;
-    cardProgress.lastReviewed = reviewDate.toISOString();
-    cardProgress.nextReview = nextReview.toISOString();
+        cardProgress.reviewCount++;
+        cardProgress.lastReviewGrade = grade;
+        cardProgress.lastReviewed = reviewDate.toISOString();
+        cardProgress.nextReview = nextReview.toISOString();
     }
     else {
+        // Create card progress for newly learned card
         const newCardProgress: CardProgress = {
             deckId,
             cardId,
@@ -62,7 +112,7 @@ export function updateCardProgress(
             lastReviewed: reviewDate.toISOString(),
             nextReview: nextReview.toISOString()
         }
-        
+
         userProgress.cardProgress.push(newCardProgress)
     }
 }

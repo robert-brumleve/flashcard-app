@@ -1,37 +1,5 @@
 {
   "userId": "keisuke",
   "cardProgress": [
-    {
-      "deckId": "test1",
-      "cardId": "dog",
-      "reviewCount": 1,
-      "lastReviewGrade": "easy",
-      "lastReviewed": "2026-07-25T04:15:44.636Z",
-      "nextReview": "2026-07-29T04:15:44.636Z"
-    },
-    {
-      "deckId": "test1",
-      "cardId": "cat",
-      "reviewCount": 1,
-      "lastReviewGrade": "hard",
-      "lastReviewed": "2026-07-25T04:15:45.633Z",
-      "nextReview": "2026-07-29T04:15:45.633Z"
-    },
-    {
-      "deckId": "test1",
-      "cardId": "bird",
-      "reviewCount": 2,
-      "lastReviewGrade": "easy",
-      "lastReviewed": "2026-07-25T13:23:27.911Z",
-      "nextReview": "2026-07-29T13:23:27.911Z"
-    },
-    {
-      "deckId": "test1",
-      "cardId": "cow",
-      "reviewCount": 2,
-      "lastReviewGrade": "easy",
-      "lastReviewed": "2026-07-25T13:23:21.821Z",
-      "nextReview": "2026-07-29T13:23:21.821Z"
-    }
   ]
 }

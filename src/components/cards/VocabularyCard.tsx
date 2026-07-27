@@ -25,8 +25,16 @@ export function VocabularyCard({card, onGrade}: VocabularyCardProps) {
                             Easy
                         </button>
 
+                        <button onClick={() => onGrade("good")}>
+                            Good
+                        </button>
+
                         <button onClick={() => onGrade("hard")}>
                             Hard
+                        </button>
+
+                        <button onClick={() => onGrade("again")}>
+                            Again
                         </button>
                     </>
                 )}

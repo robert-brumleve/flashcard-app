@@ -10,4 +10,6 @@ export interface StudyCard {
     card: Card;
     
     type: StudyCardType;
+
+    againCount: number;
 }

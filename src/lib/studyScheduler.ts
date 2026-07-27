@@ -2,7 +2,7 @@ import { StudySession } from "../types/StudySession";
 import { LoadedDeck } from "../types/LoadedDeck";
 import { Card } from "../types/Card";
 import { UserProgress } from "../types/UserProgress";
-import { INITIAL_REVIEW_CARDS, MAX_NEW_CARDS, REVIEWS_PER_NEW_CARD, TARGET_SESSION_SIZE } from "./constants";
+import { INITIAL_REVIEW_CARDS, MAX_NEW_CARDS, REVIEWS_PER_NEW_CARD, TARGET_SESSION_SIZE, AGAIN_DELAY } from "./constants";
 import { CardProgress } from "../types/CardProgress";
 import { StudyCard } from "../types/StudyCard";
 import { StudyCardType } from "../types/StudyCard";
@@ -23,7 +23,8 @@ function addStudyCard(
     card: Card,
     type: StudyCardType
 ) {
-    studyCards.push({card, type});
+    const againCount: number = 0;
+    studyCards.push({card, type, againCount});
 }
 
 function categorizeCards(
@@ -228,4 +229,22 @@ export function createStudySession(
         reviewCardCount: dueReviewCards.length + practiceReviewCards.length,
         newCardCount: newCards.length
     };
+}
+
+export function requeueStudyCard(
+    studyCards: StudyCard[],
+    currentCardIndex: number
+): void {
+    // Create copy of study card
+    const copiedCard: StudyCard = {
+        ...studyCards[currentCardIndex],
+        againCount: studyCards[currentCardIndex].againCount + 1
+    };
+
+    // Insert card into Study Cards at correct index
+    const insertIndex = Math.min(
+        currentCardIndex + AGAIN_DELAY + 1,
+        studyCards.length
+    );
+    studyCards.splice(insertIndex, 0, copiedCard);
 }
