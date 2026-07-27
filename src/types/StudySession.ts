@@ -7,7 +7,9 @@ export interface StudySession {
 
     studyCards: StudyCard[];
 
-    reviewCardCount: number;
+    dueReviewCount: number;
+
+    practiceReviewCount: number;
 
     newCardCount: number;
 }

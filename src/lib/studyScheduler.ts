@@ -226,7 +226,8 @@ export function createStudySession(
     return {
         loadedDeck,
         studyCards,
-        reviewCardCount: dueReviewCards.length + practiceReviewCards.length,
+        dueReviewCount: dueReviewCards.length,
+        practiceReviewCount: practiceReviewCards.length,
         newCardCount: newCards.length
     };
 }

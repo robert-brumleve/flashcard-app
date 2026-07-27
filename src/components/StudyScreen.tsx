@@ -70,7 +70,25 @@ export function StudyScreen({studySession, onStudyComplete, userProgress, deckId
                 </>
             ) : (
                 <>
-                    <li>Study Complete</li>
+                    <li>Study Session Complete</li>
+                    <br />
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Due Reviews</td>
+                                <td>{studySession.dueReviewCount}</td>
+                            </tr>
+                            <tr>
+                                <td>Practice Reviews</td>
+                                <td>{studySession.practiceReviewCount}</td>
+                            </tr>
+                            <tr>
+                                <td>New Cards</td>
+                                <td>{studySession.newCardCount}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
                     <button onClick={returnToDeckSelection}>
                         Return to Deck Selection
                     </button>
