@@ -3,14 +3,14 @@ import { UserProgress } from "../types/UserProgress";
 import { EASY_INTERVAL_MULTIPLIER, GOOD_INTERVAL_MULTIPLIER, HARD_INTERVAL_MULTIPLIER, AGAIN_INTERVAL_MULTIPLIER, NEW_CARD_INTERVAL_DAYS } from "../lib/constants";
 import { StudyCard } from "@/types/StudyCard";
 
-function addDays(originalDate: Date, daysToAdd: number): Date {
+export function addDays(originalDate: Date, daysToAdd: number): Date {
     // Clone the date
     const cloneDate = new Date(originalDate.getTime());
     cloneDate.setDate(cloneDate.getDate() + daysToAdd);
     return cloneDate;
 }
 
-function calculateNextReview(
+export function calculateNextReview(
     currentProgress: CardProgress | undefined,
     grade: Grade,
     reviewDate: Date,
@@ -52,7 +52,7 @@ function calculateNextReview(
     return addDays(reviewDate, interval);
 }
 
-function calculateReviewInterval(
+export function calculateReviewInterval(
     lastReviewed: string,
     nextReview: string
 ): number {
