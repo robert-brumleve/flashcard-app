@@ -56,13 +56,13 @@ export function StudyScreen({studySession, onStudyComplete, userProgress, deckId
                 <>
                     {currentCard.card.type === "vocabulary" ? (
                         <VocabularyCard
-                            key={currentCard.card.id}
+                            key={`${currentCard.card.id}-${currentCardIndex}`}
                             card={currentCard.card}
                             onGrade={handleGrade}
                         />
                     ) : currentCard.card.type === "speaking" ? (
                         <SpeakingCard
-                            key={currentCard.card.id}
+                            key={`${currentCard.card.id}-${currentCardIndex}`}
                             card={currentCard.card}
                             onGrade={handleGrade}
                         />

@@ -80,7 +80,7 @@ export function updateCardProgress(
     const cardId = studyCard.card.id;
 
     // Find CardProgress
-    const cardProgress: CardProgress | undefined = 
+    let cardProgress: CardProgress | undefined = 
         userProgress.cardProgress.find(
             card =>
                 card.deckId === deckId && card.cardId === cardId);
@@ -96,23 +96,20 @@ export function updateCardProgress(
     );
 
     // Update CardProgress
-    if (cardProgress) {
-        cardProgress.reviewCount++;
-        cardProgress.lastReviewGrade = grade;
-        cardProgress.lastReviewed = reviewDate.toISOString();
-        cardProgress.nextReview = nextReview.toISOString();
-    }
-    else {
-        // Create card progress for newly learned card
-        const newCardProgress: CardProgress = {
-            deckId,
-            cardId,
-            reviewCount: 1,
-            lastReviewGrade: grade,
-            lastReviewed: reviewDate.toISOString(),
-            nextReview: nextReview.toISOString()
-        }
+    if (!cardProgress) {
+    cardProgress = {
+        deckId,
+        cardId,
+        reviewCount: 0,
+        lastReviewGrade: "good", // temporary value
+        lastReviewed: "",
+        nextReview: ""
+    };
 
-        userProgress.cardProgress.push(newCardProgress)
-    }
+    userProgress.cardProgress.push(cardProgress);
+}
+    cardProgress.reviewCount++;
+    cardProgress.lastReviewGrade = grade;
+    cardProgress.lastReviewed = reviewDate.toISOString();
+    cardProgress.nextReview = nextReview.toISOString();
 }
