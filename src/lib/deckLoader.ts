@@ -28,14 +28,13 @@ export async function findDeckFiles(dirPath: string, results: string[] = []): Pr
 }
 
 export async function loadDeck(deckPath: string): Promise<LoadedDeck> {
-    console.log(deckPath);
     // Read file
     const deckJSON = await readFile(deckPath, "utf8");
 
     // Parse JSON
     const deck: Deck = JSON.parse(deckJSON);
 
-    //Validate
+    // Validate
     const validationResult = validateDeck(deck);
 
     // Throw if invalid

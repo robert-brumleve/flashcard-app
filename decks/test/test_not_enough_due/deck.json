@@ -1,0 +1,151 @@
+{
+  "id": "test_enough_due",
+  "name": "test enough due",
+  "version": 1,
+  "cards": [
+    {
+      "id": "test1",
+      "order": 1,
+      "type": "vocabulary",
+      "speechThreshold": 5,
+      "front": {
+        "text": "テスト１",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "test1",
+        "images": [],
+        "audio": []
+      }
+    },
+    {
+      "id": "test2",
+      "order": 2,
+      "type": "vocabulary",
+      "speechThreshold": 5,
+      "front": {
+        "text": "テスト２",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "test2",
+        "images": [],
+        "audio": []
+      }
+    },
+    {
+      "id": "test3",
+      "order": 3,
+      "type": "vocabulary",
+      "speechThreshold": 5,
+      "front": {
+        "text": "テスト３",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "test3",
+        "images": [],
+        "audio": []
+      }
+    },
+    {
+      "id": "test4",
+      "order": 4,
+      "type": "vocabulary",
+      "speechThreshold": 5,
+      "front": {
+        "text": "テスト４",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "test4",
+        "images": [],
+        "audio": []
+      }
+    },
+    {
+      "id": "test5",
+      "order": 5,
+      "type": "vocabulary",
+      "speechThreshold": 5,
+      "front": {
+        "text": "テスト５",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "test5",
+        "images": [],
+        "audio": []
+      }
+    },
+    {
+      "id": "test6",
+      "order": 6,
+      "type": "vocabulary",
+      "speechThreshold": 5,
+      "front": {
+        "text": "テスト６",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "test6",
+        "images": [],
+        "audio": []
+      }
+    },
+    {
+      "id": "test7",
+      "order": 7,
+      "type": "vocabulary",
+      "speechThreshold": 5,
+      "front": {
+        "text": "テスト７",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "test7",
+        "images": [],
+        "audio": []
+      }
+    },
+    {
+      "id": "test8",
+      "order": 8,
+      "type": "vocabulary",
+      "speechThreshold": 5,
+      "front": {
+        "text": "テスト８",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "test8",
+        "images": [],
+        "audio": []
+      }
+    },
+    {
+      "id": "test9",
+      "order": 9,
+      "type": "vocabulary",
+      "speechThreshold": 5,
+      "front": {
+        "text": "テスト９",
+        "images": [],
+        "audio": []
+      },
+      "back": {
+        "text": "test9",
+        "images": [],
+        "audio": []
+      }
+    }
+  ]
+}

@@ -104,25 +104,22 @@ function buildStudyCards(
         else break;
     }
     // Attempt to add one new then two review cards
-    while (studyCards.length < TARGET_SESSION_SIZE &&
-        (dueReviewIndex < dueReviewCards.length ||
-        newIndex < newCards.length ||
-        practiceReviewIndex < practiceReviewCards.length)
-    ) {
-        // Attempt to add a new card
-        if (newIndex < newSlots &&
-            !sessionFull(studyCards)
-        ) {
+    while (!sessionFull(studyCards)) {
+        let addedCard = false;
+
+        // 1. Attempt to add a new card
+        if (newIndex < newSlots && !sessionFull(studyCards)) {
             addStudyCard(
                 studyCards,
                 newCards[newIndex],
                 "new"
             );
             newIndex++;
+            addedCard = true;
         }
-        // Attempt to add two review cards
+
+        // 2. Attempt to add up to two review cards
         for (let i = 0; i < REVIEWS_PER_NEW_CARD; i++) {
-            // Attempt to add a due review card
             if (dueReviewIndex < dueReviewCards.length &&
                 !sessionFull(studyCards)
             ) {
@@ -132,10 +129,10 @@ function buildStudyCards(
                     "dueReview"
                 );
                 dueReviewIndex++;
+                addedCard = true;
             }
-            // If no due review cards remaining
-            // attempt to add a practice review card
-            else if (practiceReviewIndex < practiceReviewSlots &&
+            else if (
+                practiceReviewIndex < practiceReviewSlots &&
                 practiceReviewIndex < practiceReviewCards.length &&
                 !sessionFull(studyCards)
             ) {
@@ -145,7 +142,14 @@ function buildStudyCards(
                     "practiceReview"
                 );
                 practiceReviewIndex++;
+                addedCard = true;
             }
+        }
+
+        // If we went through a full loop pass and couldn't pull any new or review card,
+        // we are officially out of available pool cards. Break immediately to prevent hangs!
+        if (!addedCard) {
+            break;
         }
     }
 
