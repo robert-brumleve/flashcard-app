@@ -8,26 +8,6 @@
         {
             "path": "decks/lets-go/LG1/JP-EN_vocab",
             "enabled": true
-        },
-        {
-            "path": "decks/test/test_1",
-            "enabled": true
-        },
-        {
-            "path": "decks/test/test_2",
-            "enabled": true
-        },
-        {
-            "path": "decks/test/test_3",
-            "enabled": true
-        },
-        {
-            "path": "decks/test/test_4",
-            "enabled": true
-        },
-        {
-            "path": "decks/test/test_5",
-            "enabled": true
         }
     ]
 }

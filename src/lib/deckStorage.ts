@@ -1,13 +1,16 @@
 import { Deck } from "../types/Deck";
 import { LoadedDeck } from "../types/LoadedDeck";
 import { validateDeck } from "./validators/deckValidator";
-import { readFile } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import path from 'path';
 import { ASSETS_FOLDER_NAME } from "./constants";
 import { readdir } from "fs/promises";
 import { DeckManifest } from "../types/DeckManifest";
 
-export async function findDeckFiles(dirPath: string, results: string[] = []): Promise<string[]> {
+export async function findDeckFiles(
+    dirPath: string,
+    results: string[] = []
+): Promise<string[]> {
     // Read directory
     const files = await readdir(dirPath, {withFileTypes: true});
 
@@ -27,7 +30,9 @@ export async function findDeckFiles(dirPath: string, results: string[] = []): Pr
     return results
 }
 
-export async function loadDeck(deckPath: string): Promise<LoadedDeck> {
+export async function loadDeck(
+    deckPath: string
+): Promise<LoadedDeck> {
     // Read file
     const deckJSON = await readFile(deckPath, "utf8");
 
@@ -56,7 +61,9 @@ export async function loadDeck(deckPath: string): Promise<LoadedDeck> {
     return loadedDeck;
 }
 
-export async function loadAllDecks(deckManifest: DeckManifest): Promise<LoadedDeck[]> {
+export async function loadAllDecks(
+    deckManifest: DeckManifest
+): Promise<LoadedDeck[]> {
     // Create an empty LoadedDeck array
     const loadedDecks: LoadedDeck[] = [];
 
@@ -75,7 +82,9 @@ export async function loadAllDecks(deckManifest: DeckManifest): Promise<LoadedDe
     return loadedDecks;
 }
 
-export async function loadDeckManifest(deckManifestPath: string): Promise<DeckManifest> {
+export async function loadDeckManifest(
+    deckManifestPath: string
+): Promise<DeckManifest> {
     // Read manifest.json
     const deckManifestJSON = await readFile(deckManifestPath, "utf8");
 
@@ -83,4 +92,15 @@ export async function loadDeckManifest(deckManifestPath: string): Promise<DeckMa
     const deckManifest: DeckManifest = JSON.parse(deckManifestJSON);
 
     return deckManifest;
+}
+
+export async function saveDeck(
+    loadedDeck: LoadedDeck
+): Promise<void> {
+    validateDeck(loadedDeck.deck);
+
+    writeFile(
+        loadedDeck.deckPath,
+        JSON.stringify(loadedDeck.deck, null, 4)
+    );
 }

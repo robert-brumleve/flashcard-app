@@ -1,4 +1,4 @@
-import { loadAllDecks, loadDeckManifest } from "../lib/deckLoader";
+import { loadAllDecks, loadDeckManifest } from "../lib/deckStorage";
 import { DeckManifest } from "../types/DeckManifest";
 import { LoadedDeck } from "../types/LoadedDeck";
 import { HomeClient } from "../components/HomeClient";

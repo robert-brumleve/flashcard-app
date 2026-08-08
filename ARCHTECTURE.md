@@ -337,16 +337,17 @@ Milestone 1
 
 Milestone 2
 
-Deck editor
+✓ Study screen
 
 Milestone 3
 
-Scheduler
-Users
-Progress
+✓ Scheduler
+✓ Users
+✓ Progress
 
 Milestone 4
 
+Deck editor
 SQLite
 
 Milestone 5

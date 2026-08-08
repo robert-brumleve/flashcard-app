@@ -8,7 +8,7 @@ import { UserProgress } from "../../types/UserProgress";
 import { loadUserProgress } from "../../lib/progressStorage";
 import { createStudySession } from "../studyScheduler";
 import { AGAIN_INTERVAL_MULTIPLIER, EASY_INTERVAL_MULTIPLIER, GOOD_INTERVAL_MULTIPLIER, HARD_INTERVAL_MULTIPLIER, NEW_CARD_INTERVAL_DAYS } from "../constants";
-import { loadDeck } from "../deckLoader";
+import { loadDeck } from "../deckStorage";
 
 const testDeckPath: string = path.join(process.cwd(), 'decks/test/test_1/deck.json');
 const userId: string = 'testUser';

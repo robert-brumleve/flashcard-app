@@ -4,7 +4,7 @@ import path from "path";
 import { UserProgress } from "../../types/UserProgress";
 import { loadUserProgress } from "../../lib/progressStorage";
 import { createStudySession, requeueStudyCard } from "../studyScheduler";
-import { loadDeck } from "../deckLoader";
+import { loadDeck } from "../deckStorage";
 import { AGAIN_DELAY, INITIAL_REVIEW_CARDS } from "../constants";
 import { updateCardProgress } from "../progressManager";
 

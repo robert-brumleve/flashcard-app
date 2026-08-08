@@ -10,12 +10,12 @@ import { requeueStudyCard } from "../lib/studyScheduler";
 
 interface StudyScreenProps {
     studySession: StudySession;
-    onStudyComplete: () => void;
+    onDeckDeselected: () => void;
     userProgress: UserProgress;
     deckId: string;
 }
 
-export function StudyScreen({studySession, onStudyComplete, userProgress, deckId}: StudyScreenProps) {
+export function StudyScreen({studySession, onDeckDeselected, userProgress, deckId}: StudyScreenProps) {
     const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
     const [studyComplete, setStudyComplete] = useState<boolean>(false);
 
@@ -27,7 +27,7 @@ export function StudyScreen({studySession, onStudyComplete, userProgress, deckId
     }
 
     const returnToDeckSelection = () => {
-        onStudyComplete();
+        onDeckDeselected();
     }
 
     const handleGrade = (grade: Grade) => {
