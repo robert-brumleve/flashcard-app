@@ -8,6 +8,10 @@
         {
             "path": "decks/lets-go/LG1/JP-EN_vocab",
             "enabled": true
+        },
+        {
+            "path": "decks/test/test_1",
+            "enabled": true
         }
     ]
 }

@@ -7,7 +7,6 @@
       "id": "dog",
       "order": 1,
       "type": "vocabulary",
-      "speechThreshold": 5,
       "front": {
         "text": "犬",
         "images": [],
@@ -23,7 +22,6 @@
       "id": "cat",
       "order": 2,
       "type": "vocabulary",
-      "speechThreshold": 5,
       "front": {
         "text": "猫",
         "images": [],
@@ -39,7 +37,6 @@
       "id": "bird",
       "order": 3,
       "type": "vocabulary",
-      "speechThreshold": 5,
       "front": {
         "text": "鳥",
         "images": [],
@@ -55,7 +52,6 @@
       "id": "cow",
       "order": 4,
       "type": "vocabulary",
-      "speechThreshold": 5,
       "front": {
         "text": "牛",
         "images": [],
@@ -71,7 +67,6 @@
       "id": "horse",
       "order": 5,
       "type": "vocabulary",
-      "speechThreshold": 5,
       "front": {
         "text": "馬",
         "images": [],
@@ -87,7 +82,6 @@
       "id": "bear",
       "order": 6,
       "type": "vocabulary",
-      "speechThreshold": 5,
       "front": {
         "text": "熊",
         "images": [],
@@ -103,7 +97,6 @@
       "id": "tiger",
       "order": 7,
       "type": "vocabulary",
-      "speechThreshold": 5,
       "front": {
         "text": "虎",
         "images": [],

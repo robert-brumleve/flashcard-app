@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { LoadedDeck } from "../../types/LoadedDeck";
 
 interface DeckEditorProps {

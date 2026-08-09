@@ -9,11 +9,9 @@ export interface Card {
     
     id: string;
 
-    order: number;
-
     type: CardType;
 
-    speechThreshold: number;
+    speechThreshold?: number;
 
     front: Side;
 

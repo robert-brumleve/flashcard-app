@@ -2,7 +2,6 @@ import { describe, it, expect, beforeEach } from "vitest";
 import { calculateReviewInterval, calculateNextReview, addDays, updateCardProgress } from "../progressManager";
 import { LoadedDeck } from "../../types/LoadedDeck";
 import { StudySession } from "../../types/StudySession";
-import { StudyCard } from "../../types/StudyCard";
 import path from "path";
 import { UserProgress } from "../../types/UserProgress";
 import { loadUserProgress } from "../../lib/progressStorage";
