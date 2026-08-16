@@ -29,6 +29,9 @@ export function HomeClient({loadedDecks, userProgress}: HomeClientProps) {
     const onDeckDeselected = () => {
         setSelectedDeck(null);
     }
+    const onDeckUpdated = (updatedDeck: LoadedDeck) => {
+        setSelectedDeck(updatedDeck);
+    };
     if (selectedDeck === null) {
         return (
             <DeckSelection
@@ -43,6 +46,7 @@ export function HomeClient({loadedDecks, userProgress}: HomeClientProps) {
             <DeckEditor
                 loadedDeck={selectedDeck}
                 onDeckDeselected={onDeckDeselected}
+                onDeckUpdated={onDeckUpdated}
             />
         );
     }
