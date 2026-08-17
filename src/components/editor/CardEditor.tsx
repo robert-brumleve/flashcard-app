@@ -19,6 +19,20 @@ export function CardEditor ({
     const [backText, setBackText] = useState("");
     const [speechThreshold, setSpeechThreshold] = useState<number>(5);
     const [acceptedAnswers, setAcceptedAnswers] = useState<string[]>([]);
+    const [frontImages, setFrontImages] = useState<File[]>([]);
+    const handleFrontImageDrop = (
+        event: React.DragEvent<HTMLDivElement>
+    ) => {
+        event.preventDefault();
+
+        const files = Array.from(event.dataTransfer.files)
+            .filter((file) => file.type.startsWith("image/"));
+
+        setFrontImages((currentImages) => [
+            ...currentImages,
+            ...files
+        ]);
+    };
     const rowStyle = {
         display: 'flex',
         justifyContent: 'flex-start',
@@ -115,6 +129,55 @@ export function CardEditor ({
                     value={frontText}
                     onChange={(event) => setFrontText(event.target.value)}
                 />
+            </div>
+            <div
+                onDragOver={(event) => {
+                    event.preventDefault();
+                }}
+                onDrop={(event) => {
+                    event.preventDefault();
+                    handleFrontImageDrop(event);
+                }}
+                style={{
+                    border: "2px dashed #aaa",
+                    padding: "20px",
+                    textAlign: "center"
+                }}
+                >
+                    Drag an image here
+                </div>
+                <div
+                    style={{
+                        display: "flex",
+                        gap: "15px",
+                        flexWrap: "wrap"
+                    }}
+                    >
+                {frontImages.map((file, index) => (
+                    <div key={`${file.name}-${index}`}>
+                        <img
+                            src={URL.createObjectURL(file)}
+                            alt={file.name}
+                            style={{
+                                maxWidth: "200px",
+                                maxHeight: "200px"
+                            }}
+                        />
+
+                        <div>{file.name}</div>
+
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setFrontImages((currentImages) =>
+                                    currentImages.filter((_, i) => i !== index)
+                                );
+                            }}
+                        >
+                            Remove
+                        </button>
+                    </div>
+                ))}
             </div>
             <div style={rowStyle}>
                 <label
