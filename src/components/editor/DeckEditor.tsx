@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { LoadedDeck } from "../../types/LoadedDeck";
 import { CardEditor } from "./CardEditor";
-import { Deck } from "../../types/Deck";
 
 interface DeckEditorProps {
     loadedDeck: LoadedDeck;
@@ -41,7 +40,9 @@ export function DeckEditor({
 
             {loadedDeck.deck.cards.map((card) => (
                 <li key={card.id}>
-                    {card.id}
+                    {card.type}
+                    {card.front.text}
+                    {card.back.text}
                 </li>
             ))}
             <button
